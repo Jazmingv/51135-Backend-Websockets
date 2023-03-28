@@ -1,7 +1,7 @@
 import fs from "fs";
 import __dirname from "../utils.js";
 
-const file = __dirname + "/json/products.json";
+const file = __dirname + "/classes/products.json";
 
 export default class ProductManager {
   constructor() {
