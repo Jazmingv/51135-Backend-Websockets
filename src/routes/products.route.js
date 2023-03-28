@@ -22,8 +22,7 @@ ROUTER.get("/", (req, res) => {
   } else {
     totalProducts = PRODUCTLIST.getProducts(limit);
   }
-  res.status(200);
-  res.render('home', {totalProducts});
+  res.status(200).render('home', {totalProducts});
 });
 
 ROUTER.get("/:pid", (req, res) => {
