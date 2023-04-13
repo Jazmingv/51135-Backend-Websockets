@@ -4,6 +4,7 @@ import {Server} from 'socket.io';
 
 import __dirname from './utils.js'
 import productsRoute from './routes/products.route.js';
+import ProductManager from "./classes/productManager.js";
 
 const APP = express();
 const PORT = 8080;
@@ -32,9 +33,13 @@ const SOCKETSERVER = new Server(HTTPSERVER);
 SOCKETSERVER.on('connection', () =>{
     console.log('Nuevo cliente conectado!');
 
-    // socket.on("message2", (data) => {
-    //     logs.push({socketid:socket.id,message:data})
-    //     socketServer.emit('log',{logs});
-    // });
+    socket.on("addProduct", (data) => {
+        ProductManager.addProduct(data);
+
+    })
+
+    socket.on("deleteProduct", (data) => {
+        ProductManager.deleteProduct(data);
+    })
 
 });

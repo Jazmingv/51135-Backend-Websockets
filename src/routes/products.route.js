@@ -4,16 +4,6 @@ import ProductManager from "../classes/productManager.js";
 const ROUTER = Router();
 const PRODUCTLIST = new ProductManager();
 
-// app.get('/hello', (req, res)=>{
-//     // usuario de prueba
-//     let testUser = {
-//         name: 'Santiago',
-//         last_name: 'Kosacoff',
-//         edad: 26
-//     }
-//     res.render('index', testUser);
-// })
-
 ROUTER.get("/", (req, res) => {
   let { limit } = req.query;
   let totalProducts;
@@ -24,6 +14,11 @@ ROUTER.get("/", (req, res) => {
   }
   res.status(200).render('home', {totalProducts});
 });
+
+router.get("/realtimeproducts", (req, res) => {
+    const totalProducts = PRODUCTLIST.getProducts();
+    res.status(200).render('realTimeProducts', { totalProducts });
+})
 
 ROUTER.get("/:pid", (req, res) => {
   let productID = req.params.pid;
